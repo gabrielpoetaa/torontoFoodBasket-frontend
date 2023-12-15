@@ -14,7 +14,7 @@ export function Dropdown ({ onPriceChange, onPricePer100gChange, onLowestPricePe
       .then((response) => response.json())
       .then((data) => setDocuments(data))
       .catch((error) => console.error("Error fetching data:", error));
-  }, []); // Empty dependency array ensures the effect runs only once, similar to componentDidMount
+      }, []); // Empty dependency array ensures the effect runs only once, similar to componentDidMount
 
   useEffect(() => {
     
