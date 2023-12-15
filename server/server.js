@@ -2,19 +2,11 @@ const express = require("express");
 const app = express();
 const cors = require("cors");
 require("dotenv").config({ path: "../.env" });
-const port = process.env.PORT || 5000;
-
-
-const { MongoClient } = require("mongodb");
-const Db = process.env.MONGODB_URI;
-const client = new MongoClient(Db, {
-  // useNewUrlParser: true,
-  // useUnifiedTopology: true,
-});
- 
-var _db;
 
 app.use(cors());
+
+const port = process.env.PORT || 5000;
+
 app.use(express.json());
 app.use(require("./routes/record"));
 // get driver connection
@@ -28,21 +20,4 @@ app.listen(port, async () => {
   console.log(`Server is running on port: ${port}`);
 });
 
- 
-module.exports = {
-    connectToServer: async function (callback) {
-  
-      try {
-        await client.connect();
-      } catch (e) {
-        console.error(e);
-      }
-  
-      _db = client.db("foodBasket");
-  
-      return (_db === undefined ? false : true);
-    },
-    getDb: function () {
-      return _db;
-    },
-  };
+
