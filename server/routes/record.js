@@ -134,7 +134,7 @@ recordRoutes.route("/list").get(async function (req, res) {
 
     // console.log(filteredArray);
     console.log(filteredArray.length + " products in the basket");
-
+    console.log("Sending response:", filteredArray);    
     res.json(filteredArray);
   } catch (error) {
     console.error("Error querying collections:", error);
