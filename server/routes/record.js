@@ -354,7 +354,7 @@ recordRoutes.route("/details/:title").get(async function (req, res) {
         "producedepartments",
         "cannedanddrydepartments",
         "frozenfooddepartments",
-        "cannedanddrydepartments",
+        "refrigeratedfoodsections",
       ];
     
       const combinedResults = [];

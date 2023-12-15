@@ -13,15 +13,18 @@ export function Dropdown ({ onPriceChange, onPricePer100gChange, onLowestPricePe
 
   console.log(process.env.REACT_APP_API_BASE_URL)
 
+  
 
   useEffect(() => {
-    // Fetch data from your API endpoint or route
-    fetch(`${connect}list/`)
+    console.log("Fetching data...");
+    fetch(`/list/`)
       .then((response) => response.json())
-      .then((data) => setDocuments(data))
-      
+      .then((data) => {
+        console.log("Data received:", data);
+        setDocuments(data);
+      })
       .catch((error) => console.error("Error fetching data:", error));
-  }, []); // Empty dependency array ensures the effect runs only once, similar to componentDidMount
+  }, []);
 
 
   
