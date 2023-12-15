@@ -48,7 +48,7 @@ const ObjectId = require("mongodb").ObjectId;
 //   });
 
 // Return all documents from all collections for drop-down list component
-recordRoutes.route("api/list").get(async function (req, res) {
+recordRoutes.route("https://toronto-food-basket.vercel.app/list").get(async function (req, res) {
   try {
     const db_connect = dbo.getDb("foodbasket");
 
