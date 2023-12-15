@@ -16,11 +16,12 @@ app.use(cors());
 const port = process.env.PORT || 5000;
 const HOST = process.env.HOST || '0.0.0.0';
 
-app.use((req, res, next) => {
-  res.header('Access-Control-Allow-Origin', '*'); // Allow requests from any origin (not recommended for production)
-  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
-  next();
-});
+
+// app.use((req, res, next) => {
+//   res.header('Access-Control-Allow-Origin', '*'); // Allow requests from any origin (not recommended for production)
+//   res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+//   next();
+// });
 
 app.use(express.json());
 app.use(require("./routes/record"));

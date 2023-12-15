@@ -8,19 +8,28 @@ export function Dropdown ({ onPriceChange, onPricePer100gChange, onLowestPricePe
   const [selectedDocument, setSelectedDocument] = useState("");
   const [selectedDocumentDetails, setSelectedDocumentDetails] = useState(null);
 
+  const connect = process.env.REACT_APP_API_BASE_URL
+  //  || `http://localhost:5000`
+
+  console.log(process.env.REACT_APP_API_BASE_URL)
+
+
   useEffect(() => {
     // Fetch data from your API endpoint or route
-    fetch(`http://localhost:5000/list/`)
+    fetch(`${connect}list/`)
       .then((response) => response.json())
       .then((data) => setDocuments(data))
+      
       .catch((error) => console.error("Error fetching data:", error));
   }, []); // Empty dependency array ensures the effect runs only once, similar to componentDidMount
 
+
+  
   useEffect(() => {
     
     // Fetch details for the selected document when it changes
     if (selectedDocument) {
-      fetch(`http://localhost:5000/details/${selectedDocument}`)
+      fetch(`${connect}/details/${selectedDocument}`)
         .then((response) => response.json())
         .then((details) =>  {
             console.log("Price: " + details.price);

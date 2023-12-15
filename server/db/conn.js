@@ -6,7 +6,8 @@ const client = new MongoClient(Db, {
 });
  
 var _db;
- 
+
+
 module.exports = {
     connectToServer: async function (callback) {
   
@@ -17,7 +18,7 @@ module.exports = {
       }
   
       _db = client.db("foodBasket");
-  
+
       return (_db === undefined ? false : true);
     },
     getDb: function () {
