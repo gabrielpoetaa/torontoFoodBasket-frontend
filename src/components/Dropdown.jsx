@@ -10,7 +10,7 @@ export function Dropdown ({ onPriceChange, onPricePer100gChange, onLowestPricePe
 
   useEffect(() => {
     // Fetch data from your API endpoint or route
-    fetch(`api/list/`)
+    fetch(`${process.env.REACT_APP_API_BASE_URL}/api/list`)
       .then((response) => response.json())
       .then((data) => setDocuments(data))
       .catch((error) => console.error("Error fetching data:", error));
@@ -20,7 +20,7 @@ export function Dropdown ({ onPriceChange, onPricePer100gChange, onLowestPricePe
     
     // Fetch details for the selected document when it changes
     if (selectedDocument) {
-      fetch(`http://localhost:5000/details/${selectedDocument}`)
+      fetch(`${process.env.REACT_APP_API_BASE_URL}/details/${selectedDocument}`)
         .then((response) => response.json())
         .then((details) =>  {
             console.log("Price: " + details.price);
