@@ -21,7 +21,7 @@ app.use(require("./routes/record"));
 // get driver connection
 const dbo = require("./db/conn");
 
-app.listen(port, HOST, async () => {
+app.listen(HOST, async () => {
   // perform a database connection when server starts
   await dbo.connectToServer(function (err) {
     if (err) console.error(err);
