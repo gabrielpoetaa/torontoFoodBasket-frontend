@@ -10,7 +10,7 @@ export function Dropdown ({ onPriceChange, onPricePer100gChange, onLowestPricePe
 
   useEffect(() => {
     // Fetch data from your API endpoint or route
-    fetch(`http://localhost:5000/list/`)
+    fetch(`api/list/`)
       .then((response) => response.json())
       .then((data) => setDocuments(data))
       .catch((error) => console.error("Error fetching data:", error));
