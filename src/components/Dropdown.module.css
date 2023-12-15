@@ -1,0 +1,29 @@
+.dropDownWrapper{
+    display: flex;
+    padding: 12px;
+    justify-content: space-between;
+    align-items: center;
+
+}
+
+.dropDown{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+
+    width: 80%;
+    padding: 12px;
+    position: absolute;
+    right: 10%;
+    /* left: 25%; */
+    top: 26px;
+
+    border-radius: 8px;
+    border: 1px solid var(--woodsmoke-300);
+    background-color: var(--chestnut-50);
+
+}
+
+option{
+}
