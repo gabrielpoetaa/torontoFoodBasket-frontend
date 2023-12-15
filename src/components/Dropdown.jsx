@@ -13,11 +13,11 @@ export function Dropdown ({ onPriceChange, onPricePer100gChange, onLowestPricePe
 
   console.log(process.env.REACT_APP_API_BASE_URL)
 
-  
+
 
   useEffect(() => {
     console.log("Fetching data...");
-    fetch(`/list/`)
+    fetch("/list")
       .then((response) => response.json())
       .then((data) => {
         console.log("Data received:", data);
