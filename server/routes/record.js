@@ -48,7 +48,7 @@ const ObjectId = require("mongodb").ObjectId;
 //   });
 
 // Return all documents from all collections for drop-down list component
-recordRoutes.route("/list").get(async function (req, res) {
+recordRoutes.route("/").get(async function (req, res) {
   try {
     const db_connect = dbo.getDb("foodbasket");
 
