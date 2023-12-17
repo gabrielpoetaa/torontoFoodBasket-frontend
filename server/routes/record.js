@@ -345,7 +345,7 @@ res.json(combinedResults);
 }
 });
 
-recordRoutes.route("/details/:title").get(async function (req, res) {
+recordRoutes.route("/:title").get(async function (req, res) {
     try {
       const db_connect = dbo.getDb("foodbasket");
       const collectionNames = [
