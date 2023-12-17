@@ -8,8 +8,7 @@ export function Dropdown ({ onPriceChange, onPricePer100gChange, onLowestPricePe
   const [selectedDocument, setSelectedDocument] = useState("");
   const [selectedDocumentDetails, setSelectedDocumentDetails] = useState(null);
 
-  const API = 'https://toronto-food-basket-backend.vercel.app/'
-  //  || `http://localhost:5000`
+  const API = 'https://toronto-food-basket-backend.vercel.app/' || `http://localhost:5000`
 
   console.log(process.env.REACT_APP_API_BASE_URL)
 
