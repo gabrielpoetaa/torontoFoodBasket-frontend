@@ -56,7 +56,7 @@ function App() {
     },
     {
       id: 4,
-      title: "Last scraped price",
+      title: "Last scraped total price",
       price: 1.455,
       background: "var(--chestnut-400)"
     }
