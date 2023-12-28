@@ -17,10 +17,12 @@ export function Predata({ number, content }) {
 
   const [records, setRecords] = useState("")
   const [days, setDays] = useState("")
+  const API = "https://toronto-food-basket-backend.vercel.app"
+
 
   useEffect(() => {
     console.log("Fetching data...");
-    fetch(`http://localhost:5000/record-count`)
+    fetch(`${API}/record-count`)
       .then((response) => response.json())
       .then((data) => {
         console.log("Data received:", data);
