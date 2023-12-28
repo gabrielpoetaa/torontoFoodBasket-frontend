@@ -4,12 +4,12 @@ const cors = require("cors");
 require("dotenv").config({ path: "../.env" });
 
 
-const corsOptions = {
-  origin: 'https://toronto-food-basket-ezf18bsfl-gabriels-projects-ce63e102.vercel.app/', // Replace with your Vercel app domain
-  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
-  credentials: true,
-  optionsSuccessStatus: 204,
-};
+// const corsOptions = {
+//   origin: 'https://toronto-food-basket-ezf18bsfl-gabriels-projects-ce63e102.vercel.app/', // Replace with your Vercel app domain
+//   methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+//   credentials: true,
+//   optionsSuccessStatus: 204,
+// };
 
 app.use(cors());
 
