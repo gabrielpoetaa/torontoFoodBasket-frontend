@@ -11,13 +11,15 @@ export function Dropdown ({ onPriceChange, onPricePer100gChange, onLowestPricePe
   const API = "https://toronto-food-basket-backend.vercel.app"
   // const API = "http://localhost:5000/"
 
+  const BACK_END = process.env.REACT_APP_API_BASE_URL
+
   console.log(process.env.LOCAL)
 
 
 
   useEffect(() => {
     console.log("Fetching data...");
-    fetch(`http://localhost:5000/`)
+    fetch(`${BACK_END}`)
       .then((response) => response.json())
       .then((data) => {
         console.log("Data received:", data);
