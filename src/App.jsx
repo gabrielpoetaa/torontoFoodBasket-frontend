@@ -5,9 +5,10 @@ import { Results } from "./components/Results";
 
 import React, { useState } from "react";
 
-import Predata from './components/Predata'
+import Predata from "./components/Predata";
 
 import Dropdown from "./components/Dropdown";
+
 
 function App() {
   const [receivedPrice, setReceivedPrice] = useState("-");
@@ -79,12 +80,9 @@ function App() {
 
   return (
     <div>
-      <div class="header-section">
-      <span class="title">Toronto Food Basket</span>
-    </div>
       <div className={styles.predataWrapper}>
         <div className={styles.predataContent}>
-          <Predata/>  
+          <Predata />
         </div>
       </div>
       <div className={styles.scraperWrapper}>

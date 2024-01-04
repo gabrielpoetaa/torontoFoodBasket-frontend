@@ -1,6 +1,6 @@
 .predataWrapper{
     height: 100vh;
-    background-color: var(--woodsmoke-100);
+    background-color: var(--woodsmoke-50);
     display:flex;
     padding: 197px 57px ;
     flex-direction: column;
@@ -14,6 +14,7 @@
     justify-content: center;
     align-items:center;
     height: 100%;
+    
 }
 
 .scraperWrapper{
@@ -27,6 +28,10 @@
     gap: 8px;
 
     position: relative;
+
+    background-color: white;
+    
+
 }
 
 .listOfItems{

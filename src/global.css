@@ -49,10 +49,10 @@
 
 }
 
-/* @font-face{
+@font-face{
     font-family: 'Geist', sans-serif;
     src: ("./fonts/Geist/Geist-Regular.woff2")
-} */
+}
 
 /* *{
     margin:0;
@@ -63,6 +63,11 @@
 /* body, input, button, span, p, h1{
     font-family: Geist;
 } */
+
+*{
+    font-family: Geist, sans-serif;
+}
+
 
 /* @font-face {
     font-family: 'Geist';
@@ -93,7 +98,7 @@ p {
 
 .title {
     color: var(--woodsmoke-100);
-    font-size: 6rem;
+    font-size: 2rem;
     font-weight: 700;
     line-height: 1.4;
     text-align: center;
