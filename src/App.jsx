@@ -79,6 +79,9 @@ function App() {
 
   return (
     <div>
+      <div class="header-section">
+      <span class="title">Toronto Food Basket</span>
+    </div>
       <div className={styles.predataWrapper}>
         <div className={styles.predataContent}>
           <Predata/>  

@@ -51,7 +51,7 @@
 
 /* @font-face{
     font-family: 'Geist', sans-serif;
-    src: (".././fonts/Geist/Geist-Regular.woff2")
+    src: ("./fonts/Geist/Geist-Regular.woff2")
 } */
 
 /* *{
@@ -63,3 +63,74 @@
 /* body, input, button, span, p, h1{
     font-family: Geist;
 } */
+
+/* @font-face {
+    font-family: 'Geist';
+    src: ("./fonts/Geist/Geist-Regular.woff2")
+} */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body,
+input,
+button,
+span,
+p {
+    font-family: Geist;
+}
+
+.header-section {
+    background-color: var(--sweetcorn-600);
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.title {
+    color: var(--woodsmoke-100);
+    font-size: 6rem;
+    font-weight: 700;
+    line-height: 1.4;
+    text-align: center;
+}
+
+.justification-one {
+    height: 100vh;
+    background-color: var(--woodsmoke-100);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    gap: 10px;
+    flex-shrink: 0;
+}
+
+.justification-one p {
+    text-align: center;
+    color: var(--sweetcorn-600);
+    font-weight: 400;
+    line-height: 1.6;
+}
+
+.justification-two {
+    height: 100vh;
+    background-color: var(--sweetcorn-600);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    gap: 10px;
+    flex-shrink: 0;
+}
+
+.justification-two p {
+    text-align: center;
+    color: var(--woodsmoke-100);
+    font-weight: 400;
+    line-height: 1.6;
+}

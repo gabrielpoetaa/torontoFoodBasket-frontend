@@ -1,71 +1,74 @@
-:root{
-    --sweetcorn-50:#fefcec; 
-    --sweetcorn-100:#fbf5ca; 
-    --sweetcorn-200:#f7ec90; 
-    --sweetcorn-300:#f3dc56; 
-    --sweetcorn-400:#f0cb2f; 
-    --sweetcorn-500:#e9ae17; 
-    --sweetcorn-600:#ce8711; 
-    --sweetcorn-700:#ab6212; 
-    --sweetcorn-800:#8b4c15; 
-    --sweetcorn-900:#733e14; 
-    --sweetcorn-950:#422006; 
+/* :root {
+    --sweetcorn-50: #fefcec;
+    --sweetcorn-100: #fbf5ca;
+    --sweetcorn-200: #f7ec90;
+    --sweetcorn-300: #f3dc56;
+    --sweetcorn-400: #f0cb2f;
+    --sweetcorn-500: #e9ae17;
+    --sweetcorn-600: #ce8711;
+    --sweetcorn-700: #ab6212;
+    --sweetcorn-800: #8b4c15;
+    --sweetcorn-900: #733e14;
+    --sweetcorn-950: #422006;
 
-    --copperfield-50:#fdf5ef;
-    --copperfield-100:#fae8da;
-    --copperfield-200:#f3ceb5;
-    --copperfield-300:#ebae86;
-    --copperfield-400:#e58f65;
-    --copperfield-500:#dc6333;
-    --copperfield-600:#cd4d29;
-    --copperfield-700:#aa3b24;
-    --copperfield-800:#883124;
-    --copperfield-900:#6e2a20;
-    --copperfield-950:#3b130f;
+    --copperfield-50: #fdf5ef;
+    --copperfield-100: #fae8da;
+    --copperfield-200: #f3ceb5;
+    --copperfield-300: #ebae86;
+    --copperfield-400: #e58f65;
+    --copperfield-500: #dc6333;
+    --copperfield-600: #cd4d29;
+    --copperfield-700: #aa3b24;
+    --copperfield-800: #883124;
+    --copperfield-900: #6e2a20;
+    --copperfield-950: #3b130f;
 
-    --chestnut-50:#fcf4f4;
-    --chestnut-100:#f9e7e7;
-    --chestnut-200:#f6d2d2;
-    --chestnut-300:#eeb3b3;
-    --chestnut-400:#e28787;
-    --chestnut-500:#d05353;
-    --chestnut-600:#bf4343;
-    --chestnut-700:#a03535;
-    --chestnut-800:#852f2f;
-    --chestnut-900:#6f2d2d;
-    --chestnut-950:#3b1414;
+    --chestnut-50: #fcf4f4;
+    --chestnut-100: #f9e7e7;
+    --chestnut-200: #f6d2d2;
+    --chestnut-300: #eeb3b3;
+    --chestnut-400: #e28787;
+    --chestnut-500: #d05353;
+    --chestnut-600: #bf4343;
+    --chestnut-700: #a03535;
+    --chestnut-800: #852f2f;
+    --chestnut-900: #6f2d2d;
+    --chestnut-950: #3b1414;
 
-    --woodsmoke-50:#f6f6f6;
-    --woodsmoke-100:#e7e7e7;
-    --woodsmoke-200:#d1d1d1;
-    --woodsmoke-300:#b0b0b0;
-    --woodsmoke-400:#888888;
-    --woodsmoke-500:#6d6d6d;
-    --woodsmoke-600:#5d5d5d;
-    --woodsmoke-700:#4f4f4f;
-    --woodsmoke-800:#454545;
-    --woodsmoke-900:#3d3d3d;
-    --woodsmoke-950:#191919;
+    --woodsmoke-50: #f6f6f6;
+    --woodsmoke-100: #e7e7e7;
+    --woodsmoke-200: #d1d1d1;
+    --woodsmoke-300: #b0b0b0;
+    --woodsmoke-400: #888888;
+    --woodsmoke-500: #6d6d6d;
+    --woodsmoke-600: #5d5d5d;
+    --woodsmoke-700: #4f4f4f;
+    --woodsmoke-800: #454545;
+    --woodsmoke-900: #3d3d3d;
+    --woodsmoke-950: #191919;
 
-}
+} */
 
-@font-face{
+/* @font-face {
     font-family: 'Geist';
     src: ("./fonts/Geist/Geist-Regular.woff2")
+} */
 
-}
-
-*{
-    margin:0;
+/* * {
+    margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-body, input, button, span, p{
+body,
+input,
+button,
+span,
+p {
     font-family: Geist;
 }
 
-.header-section{
+.header-section {
     background-color: var(--sweetcorn-600);
     height: 100vh;
     display: flex;
@@ -73,7 +76,7 @@ body, input, button, span, p{
     justify-content: center;
 }
 
-.title{
+.title {
     color: var(--woodsmoke-100);
     font-size: 2rem;
     font-weight: 700;
@@ -81,38 +84,38 @@ body, input, button, span, p{
     text-align: center;
 }
 
-.justification-one{
+.justification-one {
     height: 100vh;
     background-color: var(--woodsmoke-100);
     display: flex;
     align-items: center;
-    justify-content: center;   
+    justify-content: center;
     padding: 10px;
     gap: 10px;
     flex-shrink: 0;
 }
 
-.justification-one p{
+.justification-one p {
     text-align: center;
     color: var(--sweetcorn-600);
     font-weight: 400;
     line-height: 1.6;
 }
 
-.justification-two{
+.justification-two {
     height: 100vh;
     background-color: var(--sweetcorn-600);
     display: flex;
     align-items: center;
-    justify-content: center;   
+    justify-content: center;
     padding: 10px;
     gap: 10px;
     flex-shrink: 0;
 }
 
-.justification-two p{
+.justification-two p {
     text-align: center;
     color: var(--woodsmoke-100);
     font-weight: 400;
     line-height: 1.6;
-}
+} */
