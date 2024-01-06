@@ -1,4 +1,6 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Toronto Food Basket (front-end)
+
+This project is the front-end segment of an ongoing project dedicated to illustrating the dynamic trends in food prices within Toronto, Canada. Leveraging React and its associated libraries, this project seamlessly integrates with a MongoDB cluster, meticulously constructed to store comprehensive information. The data is sourced through a bespoke Express API, crafted specifically for this purpose. The API collects and delivers real-time information, ensuring the project remains current. It's important to note that this endeavor is a work in progress, with continuous efforts directed towards enhancing and expanding the functionalities within the front-end interface.
 
 ## Available Scripts
 
