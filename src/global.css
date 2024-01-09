@@ -50,7 +50,7 @@
 }
 
 @font-face{
-    font-family: 'Roboto', sans-serif;
+    font-family: Geist, 'Roboto', sans-serif;
     src: ("./fonts/Geist/Geist-Regular.woff2")
 }
 
@@ -85,7 +85,7 @@ input,
 button,
 span,
 p {
-    font-family: Geist;
+    font-family: Geist, 'Roboto';
 }
 
 .header-section {
