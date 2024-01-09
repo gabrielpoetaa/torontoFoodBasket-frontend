@@ -1,0 +1,18 @@
+.headerContainer {
+  position: relative;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: url('../images/supermarket1.jpg') no-repeat center center fixed;
+  background-size: cover;
+}
+
+.headerText {
+  text-align: center;
+  color: var(--sweetcorn-500); /* Adjust the text color as needed */
+  background: rgba(0, 0, 0, 0.2); 
+  padding: 20px;
+  border-radius: 0px; 
+}
+
