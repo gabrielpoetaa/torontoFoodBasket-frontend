@@ -50,7 +50,7 @@
 }
 
 @font-face{
-    font-family: 'Geist', sans-serif;
+    font-family: 'Roboto', sans-serif;
     src: ("./fonts/Geist/Geist-Regular.woff2")
 }
 
@@ -65,7 +65,7 @@
 } */
 
 *{
-    font-family: Geist, sans-serif;
+    font-family: Geist, 'Roboto', sans-serif;
 }
 
 

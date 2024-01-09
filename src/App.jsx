@@ -9,6 +9,8 @@ import Predata from "./components/Predata";
 
 import Dropdown from "./components/Dropdown";
 
+import Header from "./components/Header";
+
 
 function App() {
   const [receivedPrice, setReceivedPrice] = useState("-");
@@ -80,6 +82,7 @@ function App() {
 
   return (
     <div>
+      <Header/>
       <div className={styles.predataWrapper}>
         <div className={styles.predataContent}>
           <Predata />
