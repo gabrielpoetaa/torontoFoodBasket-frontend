@@ -25,24 +25,25 @@ function App() {
       id: 1,
       title: "Highest price per 100g",
       price: 1.555,
+      background: "var(--woodsmoke-100)"
     },
     {
       id: 2,
       title: "Lowest price per 100g",
       price: "-",
-      background: "var(--sweetcorn-300)",
+      background: "var(--woodsmoke-100)"
     },
     {
       id: 3,
       title: "Average price per 100g",
       price: "-",
-      background: "var(--copperfield-400)",
+      background: "var(--woodsmoke-100)"
     },
     {
       id: 4,
       title: "Last scraped total price",
       price: 1.455,
-      background: "var(--chestnut-400)",
+      background: "var(--woodsmoke-100)"
     },
   ];
 
