@@ -1,6 +1,6 @@
 .predataWrapper{
     height: 100vh;
-    background-color: var(--chestnut-50);
+    background-color: white;
     display:flex;
     padding: 197px 57px ;
     flex-direction: column;
