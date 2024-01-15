@@ -368,6 +368,95 @@ recordRoutes.route("/record-count").get(async function (req, res) {
   }
 });
 
+recordRoutes.route("/price").get(async function (req, res) {
+  try {
+    const db_connect = dbo.getDb("foodbasket");
+
+    const allDepartments = [
+      "meatdepartments",
+      "bakerydepartments",
+      "producedepartments",
+      "cannedanddrydepartments",
+      "frozenfooddepartments",
+      "refrigeratedfoodsections",
+    ];
+
+    let combinedResults = [];
+
+    // Iterate through all departments
+    for (const department of allDepartments) {
+      const collection = db_connect.collection(department);
+      const departmentResults = await collection.find({}).toArray();
+      combinedResults = [...combinedResults, ...departmentResults];
+    }
+
+    console.log(
+      "Total number of documents in this database: " + combinedResults.length
+    );
+
+    // Order result by title alphabetically
+    combinedResults.sort((a, b) => a.title.localeCompare(b.title));
+
+    // Remove duplicated results
+    const uniqueNames = {};
+    const filteredArray = combinedResults.filter((obj) => {
+      if (!uniqueNames[obj.title]) {
+        uniqueNames[obj.title] = true;
+        return true;
+      }
+      return false;
+    });
+
+    // Calculate average pricePer100g for every month
+    const resultWithAvgPricePerMonth = filteredArray.map((product) => {
+      const avgPricePerMonth = calculateAvgPricePerMonth(product, combinedResults);
+      return {
+        ...product,
+        avgPricePerMonth,
+      };
+    });
+
+    res.json(resultWithAvgPricePerMonth);
+  } catch (error) {
+    console.error("Error querying collections:", error);
+    res.status(500).send("Internal Server Error");
+  }
+});
+
+
+// Helper function to calculate average pricePer100g for every month
+function calculateAvgPricePerMonth(product, allProducts) {
+  try {
+    const pricesPerMonth = {};
+
+    for (const entry of allProducts) {
+      const date = new Date(entry.date);
+
+      const monthYear = `${date.getFullYear()}-${(date.getMonth() + 1).toString().padStart(2, '0')}`;
+
+      if (!pricesPerMonth[monthYear]) {
+        pricesPerMonth[monthYear] = [];
+      }
+
+      // Only consider entries with the same title
+      if (entry.title === product.title) {
+        pricesPerMonth[monthYear].push(entry.pricePer100g);
+      }
+    }
+
+    const avgPricePerMonth = {};
+
+    for (const [monthYear, prices] of Object.entries(pricesPerMonth)) {
+      const averagePrice = prices.reduce((sum, price) => sum + price, 0) / prices.length;
+      avgPricePerMonth[monthYear] = averagePrice.toFixed(2); // Adjust decimal places if needed
+    }
+
+    return avgPricePerMonth;
+  } catch (error) {
+    console.error("Error calculating average pricePer100g per month:", error);
+    return {};
+  }
+}
 
 
 
