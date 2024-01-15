@@ -10,6 +10,9 @@ import Predata from "./components/Predata";
 import Dropdown from "./components/Dropdown";
 
 import Header from "./components/Header";
+import { Graph } from "./components/Graph/Graph";
+
+import { Monthly100g } from "./components/Graph/monthly100g/Monthly100g"
 
 
 function App() {
@@ -26,26 +29,25 @@ function App() {
       title: "Highest price per 100g",
       price: 1.555,
       background: "var(--chestnut-400)",
-      
     },
     {
       id: 2,
       title: "Lowest price per 100g",
       price: "-",
-      background: "var(--sweetcorn-200)"
+      background: "var(--sweetcorn-200)",
     },
     {
       id: 3,
       title: "Average price per 100g",
       price: "-",
-      background: "var(--woodsmoke-100)"
+      background: "var(--woodsmoke-100)",
     },
     {
       id: 4,
       title: "Last scraped total price",
       price: 1.455,
       background: "var(--woodsmoke-100)",
-      color1:"var(--sweetcorn-600)"
+      color1: "var(--sweetcorn-600)",
     },
   ];
 
@@ -85,24 +87,21 @@ function App() {
 
   return (
     <div>
-      <Header/>
+      <Header />
       <div className={styles.predataWrapper}>
         <div className={styles.predataContent}>
           <Predata />
         </div>
       </div>
-      <div className={styles.scraperWrapper}>
-        <Dropdown
-          onPriceChange={handlePriceFromChild}
-          onPricePer100gChange={handlePricePer100gFromChild}
-          onLowestPricePer100gChange={handleLowestPricePer100gFromChild}
-          onAveragePricePer100gChange={handleAveragePricePer100gFromChild}
-        />
-        {/* <button>
-          <CaretDown />
-          </button> */}
+      <div className={styles.scraperAndGraph}>
+        <div className={styles.scraperWrapper}>
+          <Dropdown
+            onPriceChange={handlePriceFromChild}
+            onPricePer100gChange={handlePricePer100gFromChild}
+            onLowestPricePer100gChange={handleLowestPricePer100gFromChild}
+            onAveragePricePer100gChange={handleAveragePricePer100gFromChild}
+          />
 
-        <div>
           {updatedResults.map((result) => {
             console.log(result);
             return (
@@ -115,13 +114,11 @@ function App() {
             );
           })}
         </div>
-        {/* <img src="./src/assets/images/Graph.jpg" alt="" /> */}
+        <div className={styles.graph}>
+        <Monthly100g/>
+        </div>
       </div>
-      <div>
-        {/* <Routes>
-       <Route exact path="" element={<RecordList />} />
-     </Routes> */}
-      </div>
+
     </div>
   );
 }
