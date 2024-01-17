@@ -1,8 +1,7 @@
 const { MongoClient } = require("mongodb");
-const Db = `mongodb+srv://gugapoeta:Renatoquerido88!@cluster0.mkxwkvb.mongodb.net/`
-// || process.env.API_URI ;
+const Db = process.env.API_URI ;
 
-const client = new MongoClient(Db, {cd
+const client = new MongoClient(Db, {
   // useNewUrlParser: true,
   // useUnifiedTopology: true,
 });

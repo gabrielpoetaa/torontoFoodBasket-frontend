@@ -368,10 +368,9 @@ recordRoutes.route("/record-count").get(async function (req, res) {
   }
 });
 
-recordRoutes.route("/price").get(async function (req, res) {
+recordRoutes.route("/price/:title").get(async function (req, res) {
   try {
     const db_connect = dbo.getDb("foodbasket");
-
     const allDepartments = [
       "meatdepartments",
       "bakerydepartments",
@@ -383,21 +382,16 @@ recordRoutes.route("/price").get(async function (req, res) {
 
     let combinedResults = [];
 
-    // Iterate through all departments
     for (const department of allDepartments) {
       const collection = db_connect.collection(department);
-      const departmentResults = await collection.find({}).toArray();
+      const departmentResults = await collection.find({ title: req.params.title }).toArray();
       combinedResults = [...combinedResults, ...departmentResults];
     }
 
-    console.log(
-      "Total number of documents in this database: " + combinedResults.length
-    );
+    console.log("Total number of documents for title " + req.params.title + ": " + combinedResults.length);
 
-    // Order result by title alphabetically
     combinedResults.sort((a, b) => a.title.localeCompare(b.title));
 
-    // Remove duplicated results
     const uniqueNames = {};
     const filteredArray = combinedResults.filter((obj) => {
       if (!uniqueNames[obj.title]) {
@@ -407,7 +401,6 @@ recordRoutes.route("/price").get(async function (req, res) {
       return false;
     });
 
-    // Calculate average pricePer100g for every month
     const resultWithAvgPricePerMonth = filteredArray.map((product) => {
       const avgPricePerMonth = calculateAvgPricePerMonth(product, combinedResults);
       return {
@@ -422,6 +415,7 @@ recordRoutes.route("/price").get(async function (req, res) {
     res.status(500).send("Internal Server Error");
   }
 });
+
 
 
 // Helper function to calculate average pricePer100g for every month
@@ -457,9 +451,5 @@ function calculateAvgPricePerMonth(product, allProducts) {
     return {};
   }
 }
-
-
-
-
 
 module.exports = recordRoutes;

@@ -2,26 +2,22 @@ import React, { useState, useEffect } from "react";
 import styles from "./Dropdown.module.css";
 
 
-export function Dropdown ({ onPriceChange, onPricePer100gChange, onLowestPricePer100gChange, onAveragePricePer100gChange }) {
+export function Dropdown ({ selectedDocument, onSelectedDocumentChange, onPriceChange, onPricePer100gChange, onLowestPricePer100gChange, onAveragePricePer100gChange }) {
 
   const [documents, setDocuments] = useState([]);
-  const [selectedDocument, setSelectedDocument] = useState("");
   const [selectedDocumentDetails, setSelectedDocumentDetails] = useState(null);
 
-  const API = "https://toronto-food-basket-backend.vercel.app"
-  // const API = "http://localhost:5000/"
+  // const API = "https://toronto-food-basket-backend.vercel.app"
+  const API = "http://localhost:5000/"
 
 
-  console.log(process.env.LOCAL)
-
-
-
+ 
   useEffect(() => {
     console.log("Fetching data...");
-    fetch(`${API}`)
+    fetch(`http://localhost:5000/`)
       .then((response) => response.json())
       .then((data) => {
-        console.log("Data received:", data);
+        // console.log("Data received:", data);
         setDocuments(data);
       })
       .catch((error) => console.error("Error fetching data:", error));
@@ -33,13 +29,11 @@ export function Dropdown ({ onPriceChange, onPricePer100gChange, onLowestPricePe
     
     // Fetch details for the selected document when it changes
     if (selectedDocument) {
-      fetch(`${API}/details/${selectedDocument}`)
+      fetch(`http://localhost:5000/details/${selectedDocument}`)
         .then((response) => response.json())
         .then((details) =>  {
-            console.log("Price: " + details.price);
-            console.log("Price per 100g: " + details.pricePer100g);
-
-            setSelectedDocumentDetails(details);
+            // console.log("Price: " + details.price);
+            // console.log("Price per 100g: " + details.pricePer100g);
 
             onPriceChange(details.price)
             onPricePer100gChange(details.pricePer100g)
@@ -57,9 +51,9 @@ export function Dropdown ({ onPriceChange, onPricePer100gChange, onLowestPricePe
 
 
   const handleDropdownChange = (event) => {
-    setSelectedDocument(event.target.value);
+    const selectedDocumentId = event.target.value;
+    onSelectedDocumentChange(selectedDocumentId);
   };
-
 
   return (
     <div>
@@ -76,18 +70,6 @@ export function Dropdown ({ onPriceChange, onPricePer100gChange, onLowestPricePe
           </option>
         ))}
       </select>
-
-      {/* <div>
-        {selectedDocument && (
-          <div>
-            {selectedDocumentDetails && (
-              <p>{selectedDocumentDetails.price}</p>
-              // Add more details as needed
-            )}
-          </div>
-        )}
-      
-      </div> */}
     </div>
   );
 };

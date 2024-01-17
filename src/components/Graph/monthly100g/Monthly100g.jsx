@@ -1,93 +1,137 @@
 import "../../../global.css";
 import styles from "./Monthly100g.module.css"
 import { Graph } from "../Graph";
+import React, { useState, useEffect } from "react";
 
 
-export function Monthly100g() {
+
+export function Monthly100g({ selectedDocument, onSelectedDocumentChange, }) {
 //   const { analyticsDataState } = useAnalyticsData();
-const data ={
-  "ignite": [
-      5000, 5000, 7000, 1000, 3000, 4000, 7000, 20008, 10009, 30000,
-      40001, 60002, 10003, 50004, 100550, 500106, 100017, 100308,
-      400109, 202000, 205001, 200022, 10003, 2004
-  ],
-  "expertsClub": [
-      3000, 5000, 4000, 1000, 2000, 4000, 10007, 20003, 10006, 30030,
-      400011, 60002, 10003, 500034, 100055, 10006, 100017, 30008,
-      10009, 400200, 300051, 40022, 10008, 20003
-  ]
-};
 
-const options = {
+const [chartData, setChartData] = useState({
+  ignite: [],
+  expertsClub: [],
+});
+
+
+useEffect(() => {
+  // Fetch details for the selected document when it changes
+  if (selectedDocument) {
+    fetch(`http://localhost:5000/price/${selectedDocument}`)
+      .then((response) => response.json())
+      .then((details) => {
+        console.log(details[0].avgPricePerMonth);
+
+        const avgPricePerMonth = details[0].avgPricePerMonth;
+
+        // Separate keys and values into two arrays
+        const pricePer100gValues = Object.values(avgPricePerMonth);
+        const numericIgniteValues = pricePer100gValues.map(value => parseFloat(value));
+
+        const expertsClubKeys = Object.keys(avgPricePerMonth);
+        const numericExpertClubKeys = expertsClubKeys.map(value => parseFloat(value))
+
+        setChartData({
+         pricePer100g: numericIgniteValues,
+          expertsClub: expertsClubKeys,
+        });
+      })
+        .catch((error) => console.error("Error fetching document details:", error));
+      } else {
+        // Reset details if no document is selected
+        setChartData({
+          ignite: [],
+          expertsClub: [],
+        });
+      }
+    }, [selectedDocument]);
+
+
+  const handleDropdownChange = (event) => {
+    const selectedDocumentId = event.target.value;
+    onSelectedDocumentChange(selectedDocumentId);
+  };
+
+  const lastExpertsClubValue = chartData.expertsClub[chartData.expertsClub.length - 1];
   
+
+  const options= {
     title: {
-      text: "",
-      useHTML: true,
-      align: "left",
-      style: {
-        padding: "30px",
-        fontSize: "20px",
-        color: "",
-        fontWeight: "bold",
-        fontStyle: "Normal",
-        fontFamily: "Inter",
-      },
+        text: "",
     },
 
-    chart: {
-      backgroundColor: 'var(--woodsmoke-50)',
-      type: 'line'
-  },
+    chart:{
+      backgroundColor: "var(--woodsmoke-50)",
+      // width: 1000, // Set the width to 100%
+
+    },
 
     series: [
-      {
-        name: "Ignite",
-        type: "spline",
-        data: data.ignite,
-        color: "",
-      },
-      {
-        name: "Experts Club",
-        type: "spline",
-        data: data.expertsClub,
-        color: "",
-      },
+        // {
+        //     type: "column",
+        //     name: "",
+        //     color: "var(--chestnut-500)",
+        //     data: chartData.pricePer100g,
+        // },
+        {
+            type: "spline",
+            name: "Average Price Per 100g",
+            color: "var(--sweetcorn-600)",
+            data: chartData.pricePer100g,
+            
+            
+
+
+        },
     ],
 
-    tooltip: {
-      enabled: false,
+    xAxis: {
+      categories: chartData.expertsClub, // Set categories from expertsClubKeys
+        min: 0,
+        max: chartData.expertsClub.length -1,
+        tickInterval: 1,
+        labels: {
+          style: {
+            fontFamily: "Geist", // Set your desired font family
+            fontSize: "18px", // Set your desired font size
+            fontWeight: "600",
+            color: "var(--woodsmoke-600)", // Set your desired label color
+          },
+        },
     },
 
     yAxis: {
-      min: 0,
-      title: {
-        text: "",
-      },
+        title: {
+            text: "",
+        },
+        labels: {
+          style: {
+            fontFamily: "Geist", // Set your desired font family
+            fontSize: "18px", // Set your desired font size
+            fontWeight: "600",
+            color: "var(--woodsmoke-600)", // Set your desired label color
+          },
+        },
     },
-    // plotOptions: {
-    //   column: {
-    //     dataLabels: {
-    //       useHTML: true,
-    //       enabled: true,
-    //       color: "",
-    //       inside: true,
-    //       verticalAlign: "bottom",
-    //       borderWidth: 3,
-    //       shadow: false,
-    //       style: {
-    //         fontSize: "36px",
-    //         fontWeight: "bold",
-    //         fontStyle: "Normal",
-    //         lineHeight: "44px",
-    //         fontFamily: "Inter",
-    //         textOutline: "0",
-    //         padding: "14px",
-    //       },
-    //     },
-    //   },
-    // },
-  };
 
+    legend: {
+        align: "left",
+        verticalAlign: "top",
+        margin: 40,
+        
+    },
+
+    // tooltip: {
+    //     useHTML: true,
+    //     formatter() {
+    //         const self: TooltipFormatterContextObject = this;
+    //         return `<div style="display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 10px; z-index: 1">
+    //         <h1 style="font-size: 30px; font-family: Inter; color: ${AnalyticsColors.black}; margin: 0px;"> ${self.point.y}</h1>
+    //         <span style="font-size: 16px; font-weight: 500; font-style: normal; color: ${AnalyticsColors.darkGray}"> Acessos </span>
+    //         </div>`;
+    //     },
+    // },
+};
   return (
     <div>
       <Graph options={options} />

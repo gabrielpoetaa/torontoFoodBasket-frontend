@@ -18,11 +18,11 @@ const Predata = ({ number, content }) => {
   const API = "https://toronto-food-basket-backend.vercel.app";
 
   useEffect(() => {
-    console.log("Fetching data...");
+    // console.log("Fetching data...");
     fetch(`${API}/record-count`)
       .then((response) => response.json())
       .then((data) => {
-        console.log("Data received:", data);
+        // console.log("Data received:", data);
         setRecords(data);
       })
       .catch((error) => console.error("Error fetching data:", error));
