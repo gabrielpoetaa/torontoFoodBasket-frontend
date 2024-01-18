@@ -1,139 +1,136 @@
 import "../../../global.css";
-import styles from "./Monthly100g.module.css"
+import styles from "./Monthly100g.module.css";
 import { Graph } from "../Graph";
 import React, { useState, useEffect } from "react";
 
+export function Monthly100g({ selectedDocument, onSelectedDocumentChange }) {
+  //   const { analyticsDataState } = useAnalyticsData();
 
-export function Monthly100g({ selectedDocument, onSelectedDocumentChange, }) {
-//   const { analyticsDataState } = useAnalyticsData();
+  const [chartData, setChartData] = useState({
+    ignite: [],
+    expertsClub: [],
+  });
 
-const [chartData, setChartData] = useState({
-  ignite: [],
-  expertsClub: [],
-});
+  const API = "https://toronto-food-basket-backend.vercel.app";
+  // const API = "http://localhost:5000/"
 
+  useEffect(() => {
+    // Fetch details for the selected document when it changes
+    if (selectedDocument) {
+      fetch(`${API}/price/${selectedDocument}`)
+        .then((response) => response.json())
+        .then((details) => {
+          console.log(details[0].avgPricePerMonth);
 
-useEffect(() => {
-  // Fetch details for the selected document when it changes
-  if (selectedDocument) {
-    fetch(`http://localhost:5000/price/${selectedDocument}`)
-      .then((response) => response.json())
-      .then((details) => {
-        console.log(details[0].avgPricePerMonth);
+          const avgPricePerMonth = details[0].avgPricePerMonth;
 
-        const avgPricePerMonth = details[0].avgPricePerMonth;
+          // Separate keys and values into two arrays
+          const pricePer100gValues = Object.values(avgPricePerMonth);
+          const numericIgniteValues = pricePer100gValues.map((value) =>
+            parseFloat(value)
+          );
 
-        // Separate keys and values into two arrays
-        const pricePer100gValues = Object.values(avgPricePerMonth);
-        const numericIgniteValues = pricePer100gValues.map(value => parseFloat(value));
+          const expertsClubKeys = Object.keys(avgPricePerMonth);
+          const numericExpertClubKeys = expertsClubKeys.map((value) =>
+            parseFloat(value)
+          );
 
-        const expertsClubKeys = Object.keys(avgPricePerMonth);
-        const numericExpertClubKeys = expertsClubKeys.map(value => parseFloat(value))
-
-        setChartData({
-         pricePer100g: numericIgniteValues,
-          expertsClub: expertsClubKeys,
-        });
-      })
-        .catch((error) => console.error("Error fetching document details:", error));
-      } else {
-        // Reset details if no document is selected
-        setChartData({
-          ignite: [],
-          expertsClub: [],
-        });
-      }
-    }, [selectedDocument]);
-
+          setChartData({
+            pricePer100g: numericIgniteValues,
+            expertsClub: expertsClubKeys,
+          });
+        })
+        .catch((error) =>
+          console.error("Error fetching document details:", error)
+        );
+    } else {
+      // Reset details if no document is selected
+      setChartData({
+        ignite: [],
+        expertsClub: [],
+      });
+    }
+  }, [selectedDocument]);
 
   const handleDropdownChange = (event) => {
     const selectedDocumentId = event.target.value;
     onSelectedDocumentChange(selectedDocumentId);
   };
 
-  const lastExpertsClubValue = chartData.expertsClub[chartData.expertsClub.length - 1];
-  
+  const lastExpertsClubValue =
+    chartData.expertsClub[chartData.expertsClub.length - 1];
 
-  const options= {
-    
+  const options = {
     title: {
-        text: "",
+      text: "",
     },
 
-    chart:{
+    chart: {
       backgroundColor: "var(--woodsmoke-50)",
       // width: 750, // Set the width to 100%
-
     },
 
     series: [
-        {
-            type: "column",
-            name: "",
-            color: "var(--sweetcorn-600)",
-            data: chartData.pricePer100g,
-            showInLegend:false
-        },
-        {
-            type: "spline",
-            name: "Average Price Per 100g every month (YYYY-MM)",
-            color: "var(--copperfield-700)",
-            data: chartData.pricePer100g,
+      {
+        type: "column",
+        name: "",
+        color: "var(--sweetcorn-600)",
+        data: chartData.pricePer100g,
+        showInLegend: false,
+      },
+      {
+        type: "spline",
+        name: "Average Price Per 100g every month (YYYY-MM)",
+        color: "var(--copperfield-700)",
+        data: chartData.pricePer100g,
 
-            // line, spline, area, areaspline, column, bar, pie, scatter, gauge, arearange, areasplinerange and columnrange
-            
-            
-
-
-        },
+        // line, spline, area, areaspline, column, bar, pie, scatter, gauge, arearange, areasplinerange and columnrange
+      },
     ],
 
     xAxis: {
       categories: chartData.expertsClub, // Set categories from expertsClubKeys
-        min: 0,
-        max: chartData.expertsClub.length -1,
-        tickInterval: 1,
-        labels: {
-          style: {
-            fontFamily: "Geist", // Set your desired font family
-            fontSize: "18px", // Set your desired font size
-            fontWeight: "600",
-            color: "var(--woodsmoke-600)", // Set your desired label color
-          },
+      min: 0,
+      max: chartData.expertsClub.length - 1,
+      tickInterval: 1,
+      labels: {
+        style: {
+          fontFamily: "Geist", // Set your desired font family
+          fontSize: "18px", // Set your desired font size
+          fontWeight: "600",
+          color: "var(--woodsmoke-600)", // Set your desired label color
         },
+      },
     },
 
     yAxis: {
-        title: {
-            text: "",
+      title: {
+        text: "",
+      },
+      labels: {
+        style: {
+          fontFamily: "Geist", // Set your desired font family
+          fontSize: "18px", // Set your desired font size
+          fontWeight: "600",
+          color: "var(--woodsmoke-600)", // Set your desired label color
         },
-        labels: {
-          style: {
-            fontFamily: "Geist", // Set your desired font family
-            fontSize: "18px", // Set your desired font size
-            fontWeight: "600",
-            color: "var(--woodsmoke-600)", // Set your desired label color
-          },
-        },
+      },
     },
 
     legend: {
-        align: "left",
-        verticalAlign: "top",
-        margin: 40,
-        
+      align: "left",
+      verticalAlign: "top",
+      margin: 40,
     },
 
     plotOptions: {
       column: {
-        
-          dataLabels: {
-            
-              enabled: false,
-          },
-          pointWidth: 30,
-
-        }},
+        dataLabels: {
+          enabled: false,
+        },
+        pointWidth: 30,
+      },
+    },
 
     // tooltip: {
     //     useHTML: true,
@@ -145,12 +142,12 @@ useEffect(() => {
     //         </div>`;
     //     },
     // },
-};
+  };
   return (
     <div>
       <Graph options={options} />
     </div>
   );
-};
+}
 
 // export default Monthly100g;
