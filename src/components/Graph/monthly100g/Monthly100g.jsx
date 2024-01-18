@@ -76,7 +76,7 @@ useEffect(() => {
         },
         {
             type: "spline",
-            name: "Average Price Per 100g",
+            name: "Average Price Per 100g every month (YYYY-MM)",
             color: "var(--copperfield-700)",
             data: chartData.pricePer100g,
 
