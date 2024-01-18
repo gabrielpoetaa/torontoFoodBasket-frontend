@@ -1,7 +1,13 @@
 import HighchartsReact from "highcharts-react-official";
 import * as Highcharts from "highcharts"
+import highchartsAccessibility from "highcharts/modules/accessibility";
 
 import styles from "./Graph.module.css";
+
+
+// init the module
+highchartsAccessibility(Highcharts);
+
 
 
 

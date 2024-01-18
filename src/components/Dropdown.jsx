@@ -7,14 +7,14 @@ export function Dropdown ({ selectedDocument, onSelectedDocumentChange, onPriceC
   const [documents, setDocuments] = useState([]);
   const [selectedDocumentDetails, setSelectedDocumentDetails] = useState(null);
 
-  // const API = "https://toronto-food-basket-backend.vercel.app"
-  const API = "http://localhost:5000/"
+  const API = "https://toronto-food-basket-backend.vercel.app"
+  // const API = "http://localhost:5000/"
 
 
  
   useEffect(() => {
     console.log("Fetching data...");
-    fetch(`http://localhost:5000/`)
+    fetch(`${API}`)
       .then((response) => response.json())
       .then((data) => {
         // console.log("Data received:", data);
@@ -29,11 +29,12 @@ export function Dropdown ({ selectedDocument, onSelectedDocumentChange, onPriceC
     
     // Fetch details for the selected document when it changes
     if (selectedDocument) {
-      fetch(`http://localhost:5000/details/${selectedDocument}`)
+      fetch(`${API}/details/${selectedDocument}`)
         .then((response) => response.json())
         .then((details) =>  {
             // console.log("Price: " + details.price);
             // console.log("Price per 100g: " + details.pricePer100g);
+            console.log(`${API}/details/${selectedDocument}`)
 
             onPriceChange(details.price)
             onPricePer100gChange(details.pricePer100g)

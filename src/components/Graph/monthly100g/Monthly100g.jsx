@@ -4,7 +4,6 @@ import { Graph } from "../Graph";
 import React, { useState, useEffect } from "react";
 
 
-
 export function Monthly100g({ selectedDocument, onSelectedDocumentChange, }) {
 //   const { analyticsDataState } = useAnalyticsData();
 
@@ -56,28 +55,32 @@ useEffect(() => {
   
 
   const options= {
+    
     title: {
         text: "",
     },
 
     chart:{
       backgroundColor: "var(--woodsmoke-50)",
-      // width: 1000, // Set the width to 100%
+      // width: 750, // Set the width to 100%
 
     },
 
     series: [
-        // {
-        //     type: "column",
-        //     name: "",
-        //     color: "var(--chestnut-500)",
-        //     data: chartData.pricePer100g,
-        // },
+        {
+            type: "column",
+            name: "",
+            color: "var(--sweetcorn-600)",
+            data: chartData.pricePer100g,
+            showInLegend:false
+        },
         {
             type: "spline",
             name: "Average Price Per 100g",
-            color: "var(--sweetcorn-600)",
+            color: "var(--copperfield-700)",
             data: chartData.pricePer100g,
+
+            // line, spline, area, areaspline, column, bar, pie, scatter, gauge, arearange, areasplinerange and columnrange
             
             
 
@@ -120,6 +123,17 @@ useEffect(() => {
         margin: 40,
         
     },
+
+    plotOptions: {
+      column: {
+        
+          dataLabels: {
+            
+              enabled: false,
+          },
+          pointWidth: 30,
+
+        }},
 
     // tooltip: {
     //     useHTML: true,
