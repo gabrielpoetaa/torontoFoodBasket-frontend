@@ -62,7 +62,8 @@ export function Monthly100g({ selectedDocument, onSelectedDocumentChange }) {
 
   const options = {
     title: {
-      text: "",
+      text: "Average Price Per 100g every month (YYYY-MM)",
+      margin:50
     },
 
     chart: {
@@ -71,18 +72,13 @@ export function Monthly100g({ selectedDocument, onSelectedDocumentChange }) {
     },
 
     series: [
-      {
-        type: "column",
-        name: "",
-        color: "var(--sweetcorn-600)",
-        data: chartData.pricePer100g,
-        showInLegend: false,
-      },
+
       {
         type: "spline",
-        name: "Average Price Per 100g every month (YYYY-MM)",
+        name: "",
         color: "var(--copperfield-700)",
         data: chartData.pricePer100g,
+        showInLegend: false,
 
         // line, spline, area, areaspline, column, bar, pie, scatter, gauge, arearange, areasplinerange and columnrange
       },
