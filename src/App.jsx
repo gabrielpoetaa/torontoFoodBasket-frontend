@@ -13,7 +13,7 @@ import Header from "./components/Header";
 import { Graph } from "./components/Graph/Graph";
 
 import { Monthly100g } from "./components/Graph/monthly100g/Monthly100g"
-
+import { Slides } from "./components/Slides";
 
 function App() {
   const [selectedDocument, setSelectedDocument] = useState("");
@@ -99,6 +99,9 @@ function App() {
     <div>
       <Header />
       <div className={styles.predataWrapper}>
+        {/* <div className={styles.slidesWrapper}>
+        <Slides/>
+        </div> */}
         <div className={styles.predataContent}>
           <Predata />
         </div>

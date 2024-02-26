@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from "react";
 import styles from "./Dropdown.module.css";
 
+import { CaretDown } from "@phosphor-icons/react"
+
+
 
 export function Dropdown ({ selectedDocument, onSelectedDocumentChange, onPriceChange, onPricePer100gChange, onLowestPricePer100gChange, onAveragePricePer100gChange }) {
 
@@ -59,6 +62,10 @@ export function Dropdown ({ selectedDocument, onSelectedDocumentChange, onPriceC
   return (
     <div>
       {/* <label>Select a document:</label> */}
+      <CaretDown
+        
+      />
+
       <select className={styles.dropDown} value={selectedDocument} onChange={handleDropdownChange}>
         <option value="" disabled>
           Select a product

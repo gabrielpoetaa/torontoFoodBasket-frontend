@@ -16,6 +16,9 @@ align-items:center;
 height: 100%;
 }
 
+.slidesWrapper{
+}
+
 .scraperAndGraph{
 display: grid;
 grid-template-columns: 1fr 2fr;
