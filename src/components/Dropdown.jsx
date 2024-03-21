@@ -62,9 +62,9 @@ export function Dropdown ({ selectedDocument, onSelectedDocumentChange, onPriceC
   return (
     <div>
       {/* <label>Select a document:</label> */}
-      <CaretDown
+      {/* <CaretDown
         
-      />
+      /> */}
 
       <select className={styles.dropDown} value={selectedDocument} onChange={handleDropdownChange}>
         <option value="" disabled>

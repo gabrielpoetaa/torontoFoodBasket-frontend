@@ -21,10 +21,7 @@ img{
   height: 1250px;
 }
 
-
-
-
-@media (max-width:800px){
+@media (max-width:1000px){
 img{
   width: 300px;
   height: 300px;
