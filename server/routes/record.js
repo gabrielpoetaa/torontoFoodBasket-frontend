@@ -19,11 +19,12 @@ recordRoutes.route("/").get(async function (req, res) {
     // const projection = { title: 1, _id: 0, price: 1 };
 
     // Query Meat Department Collection
-    const meatDepartmentsCollection = db_connect.collection("meatdepartments"); // important!!!
-    const resultMeatDepartmens = await meatDepartmentsCollection
-    .find({ title: { $ne: "Chicken Drumstick" } })
-    
-    .toArray();
+    const meatDepartmentsCollection = db_connect.collection("meatdepartments");
+
+    const resultMeatDepartments = await meatDepartmentsCollection
+      .find({ title: { $ne: "Chicken Drumstick" } })
+      .toArray();
+
 
     // Query Bakery Department Collection
     const bakeryDepartmentsCollection =
@@ -65,7 +66,7 @@ recordRoutes.route("/").get(async function (req, res) {
 
     // Combine ALL results from collections
     const combinedResults = [
-      ...resultMeatDepartmens,
+      ...resultMeatDepartments,
       ...resultBakeryDepartments,
       ...resultProduceDepartments,
       ...resultCannedAndDryDepartments,
