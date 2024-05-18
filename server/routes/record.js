@@ -21,8 +21,8 @@ recordRoutes.route("/").get(async function (req, res) {
     // Query Meat Department Collection
     const meatDepartmentsCollection = db_connect.collection("meatdepartments"); // important!!!
     const resultMeatDepartmens = await meatDepartmentsCollection
-      .find({})
-      .toArray();
+    .find({ titulo: { $ne: "Chicken Drumstick" } })
+    .toArray();
 
     // Query Bakery Department Collection
     const bakeryDepartmentsCollection =
