@@ -63,7 +63,7 @@ export function Monthly100g({ selectedDocument, onSelectedDocumentChange }) {
   const options = {
     title: {
       text: "Average Price Per 100g every month (YYYY-MM)",
-      margin:50
+      margin: 50,
     },
 
     chart: {
@@ -72,7 +72,6 @@ export function Monthly100g({ selectedDocument, onSelectedDocumentChange }) {
     },
 
     series: [
-
       {
         type: "spline",
         name: "",
