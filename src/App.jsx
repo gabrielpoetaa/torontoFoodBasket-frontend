@@ -12,12 +12,11 @@ import Dropdown from "./components/Dropdown";
 import Header from "./components/Header";
 import { Graph } from "./components/Graph/Graph";
 
-import { Monthly100g } from "./components/Graph/monthly100g/Monthly100g"
+import { Monthly100g } from "./components/Graph/monthly100g/Monthly100g";
 import { Slides } from "./components/Slides";
 
 function App() {
   const [selectedDocument, setSelectedDocument] = useState("");
-
 
   const [receivedPrice, setReceivedPrice] = useState("-");
   const [receivedPricePer100g, setReceivedPricePer100g] = useState("-");
@@ -26,12 +25,9 @@ function App() {
   const [receivedAveragePricePer100g, setReceivedAveragePricePer100g] =
     useState("-");
 
-
-
-    function handleSelectedDocumentChange(documentId) {
-      setSelectedDocument(documentId);
-    }
-  
+  function handleSelectedDocumentChange(documentId) {
+    setSelectedDocument(documentId);
+  }
 
   const results = [
     {
@@ -109,8 +105,8 @@ function App() {
       <div className={styles.scraperAndGraph}>
         <div className={styles.scraperWrapper}>
           <Dropdown
-          selectedDocument={selectedDocument}
-          onSelectedDocumentChange={handleSelectedDocumentChange}
+            selectedDocument={selectedDocument}
+            onSelectedDocumentChange={handleSelectedDocumentChange}
             onPriceChange={handlePriceFromChild}
             onPricePer100gChange={handlePricePer100gFromChild}
             onLowestPricePer100gChange={handleLowestPricePer100gFromChild}
@@ -130,13 +126,12 @@ function App() {
           })}
         </div>
         <div className={styles.graph}>
-        <Monthly100g
-         selectedDocument={selectedDocument}
-          onSelectedDocumentChange={handleSelectedDocumentChange}
-        />
+          <Monthly100g
+            selectedDocument={selectedDocument}
+            onSelectedDocumentChange={handleSelectedDocumentChange}
+          />
         </div>
       </div>
-
     </div>
   );
 }

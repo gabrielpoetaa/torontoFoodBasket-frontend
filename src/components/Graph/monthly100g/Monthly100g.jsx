@@ -53,8 +53,8 @@ export function Monthly100g({ selectedDocument, onSelectedDocumentChange }) {
   }, [selectedDocument]);
 
   const handleDropdownChange = (event) => {
-    const selectedDocumentId = event.target.value;
-    onSelectedDocumentChange(selectedDocumentId);
+    const selectedDocumentTitle = event.target.value;
+    onSelectedDocumentChange(selectedDocumentTitle);
   };
 
   const lastExpertsClubValue =
