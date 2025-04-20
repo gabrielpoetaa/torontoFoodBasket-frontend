@@ -4,7 +4,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: url('https://live.staticflickr.com/65535/53554924200_f7baaf7754_k.jpg') no-repeat top fixed;
+  background: url("https://live.staticflickr.com/65535/53554924200_f7baaf7754_k.jpg")
+    no-repeat top fixed;
   background-size: cover;
 }
 
@@ -13,18 +14,12 @@
   color: var(--sweetcorn-500); /* Adjust the text color as needed */
   /* background: rgba(0, 0, 0, 0.2);  */
   padding: 20px;
-  border-radius: 0px; 
+  border-radius: 0px;
 }
 
-img{
-  width: 1250px;
-  height: 1250px;
+@media (max-width: 1000px) {
+  img {
+    width: 300px;
+    height: 300px;
+  }
 }
-
-@media (max-width:1000px){
-img{
-  width: 300px;
-  height: 300px;
-}
-}
-
