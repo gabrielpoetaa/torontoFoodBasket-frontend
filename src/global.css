@@ -1,3 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 :root {
   --sweetcorn-50: #fefcec;
   --sweetcorn-100: #fbf5ca;
