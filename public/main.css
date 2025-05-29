@@ -5,13 +5,12 @@
   src: url("https://assets.codepen.io/605876/GeistVF.ttf") format("truetype");
 }
 
-
 :root {
-	--text: hsl(0 0% 0%);
-	--white: hsl(0 0% 100%);
-	--font-size: clamp(8rem, 8vw + 1rem, 10rem);
-	--padding: 5vh;
-	--nav: 10px;
+  --text: hsl(0 0% 0%);
+  --white: hsl(0 0% 100%);
+  --font-size: clamp(8rem, 8vw + 1rem, 10rem);
+  --padding: 5vh;
+  --nav: 10px;
   --margin: calc(var(--nav) + var(--padding));
   --header: calc(var(--nav) + var(--padding) + var(--font-size));
 }
@@ -19,34 +18,32 @@
 *,
 *:after,
 *:before {
-	box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 body {
-	/* display: grid; */
-	place-items: center;
-	min-height: 100vh;
-	font-weight: 60;
+  /* display: grid; */
+  /* place-items: center; */
+  min-height: 100vh;
+  font-weight: 60;
   overflow-x: hidden;
   height: 100vh;
 }
 
-
-
 .content {
-	margin: 0 auto;
-	max-width: 100%;
-	width: 80ch;
+  margin: 0 auto;
+  max-width: 100%;
+  width: 80ch;
   padding: 0 1rem;
 }
 
-.first-div{
-    height: 100vh;
+.first-div {
+  height: 100vh;
 }
 
 section {
-	background: var(--text);
-	min-height: 100vh;
+  background: var(--text);
+  min-height: 100vh;
 }
 
 /* div section:first-of-type {
@@ -62,47 +59,44 @@ section {
 } */
 
 header {
-	position: sticky;
-	top: var(--margin);
-	color: var(--white);
-	margin: 0;
-	text-transform: uppercase;
-	text-align: center;
-	display: flex;
-	justify-content: center;
-	align-items: flex-end;
-	margin: calc(var(--padding) + var(--nav)) 0 0 0;
-	z-index: 1;
+  position: sticky;
+  top: var(--margin);
+  color: var(--white);
+  margin: 0;
+  text-transform: uppercase;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  margin: calc(var(--padding) + var(--nav)) 0 0 0;
+  z-index: 1;
 }
 
-
-
 h1 {
-	font-size: var(--font-size);
-	/* line-height:0; */
-	margin: 0;
-	font-weight: 120;
+  font-size: var(--font-size);
+  /* line-height:0; */
+  margin: 0;
+  font-weight: 120;
   translate: 0 4px;
-
 }
 
 main > section {
-	background: var(--white);
-	display: grid;
-	place-items: center;
+  background: var(--white);
+  display: grid;
+  place-items: center;
 }
 
 main > section .content {
-	padding: 0 1rem;
+  padding: 0 1rem;
 }
 
 p {
-	font-size: 2rem;
+  font-size: 2rem;
 }
 
 section {
-	position: relative;
-	overflow: hidden;
+  position: relative;
+  overflow: hidden;
 }
 
 /* img {
@@ -113,20 +107,18 @@ section {
 } */
 
 body > header {
-	position: fixed;
-	top: 0;
-	z-index: 0;
+  position: fixed;
+  top: 0;
+  z-index: 0;
   margin-top: var(--margin);
-
 }
 
 body > header h1 {
-	color: #ce8711;
-	
+  color: #ce8711;
 }
 
 main {
-	clip-path: inset(var(--header) 0 0 0);
+  clip-path: inset(var(--header) 0 0 0);
 }
 
 /* footer {
@@ -135,27 +127,25 @@ main {
 	padding: 2rem 1rem;
 } */
 
-h1{
-    font-weight: 800;
+h1 {
+  font-weight: 800;
 }
 
-
-#id{
-    z-index: 4;
-
+#id {
+  z-index: 4;
 }
-.id-wrapper{
-    z-index: 5;
+.id-wrapper {
+  z-index: 5;
 }
 
-@media (max-width: 700px){
-	:root {
-		--text: hsl(0 0% 0%);
-		--white: hsl(0 0% 100%);
-		--font-size: clamp(2rem, 8vw + 1rem, 10rem);
-		--padding: 10vh;
-		--nav: 200px;
-		--margin: calc(var(--nav) + var(--padding));
-		--header: calc(var(--nav) + var(--padding) + var(--font-size));
-	}
+@media (max-width: 700px) {
+  :root {
+    --text: hsl(0 0% 0%);
+    --white: hsl(0 0% 100%);
+    --font-size: clamp(2rem, 8vw + 1rem, 10rem);
+    --padding: 10vh;
+    --nav: 200px;
+    --margin: calc(var(--nav) + var(--padding));
+    --header: calc(var(--nav) + var(--padding) + var(--font-size));
+  }
 }

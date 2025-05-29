@@ -93,11 +93,13 @@ function App() {
 
   return (
     <div>
-      <Header />
+      <div>
+        <Header />
+      </div>
+      <div className={styles.slidesWrapper}>
+        <Slides />
+      </div>
       <div className={styles.predataWrapper}>
-        {/* <div className={styles.slidesWrapper}>
-        <Slides/>
-        </div> */}
         <div className={styles.predataContent}>
           <Predata />
         </div>

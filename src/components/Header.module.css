@@ -7,6 +7,8 @@
   background: url("https://live.staticflickr.com/65535/53554924200_f7baaf7754_k.jpg")
     no-repeat top fixed;
   background-size: cover;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 .headerText {
@@ -17,9 +19,16 @@
   border-radius: 0px;
 }
 
-@media (max-width: 1000px) {
+/* .logo {
+  width: 600px;
+} */
+
+@media (max-width: 1200px) {
+  .headerContainer .logo {
+    margin: auto 12px;
+  }
+
   img {
     width: 300px;
-    height: 300px;
   }
 }
