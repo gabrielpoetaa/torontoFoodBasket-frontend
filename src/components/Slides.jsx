@@ -62,7 +62,7 @@ export function Slides() {
                 transition={{ duration: 1.5, ease: "easeInOut", delay: 0.5 }}
                 className="w-full md:w-1/2 h-full xl:pt-32 lg:pt-6 pt-10 px-12 md:px-16"
               >
-                <p className="xl:text-sm lg:text-lg text-sm font-extralight text-woodsmoke-500 xl:leading-8">
+                <p className="xl:text-xl lg:text-lg text-sm font-extralight text-woodsmoke-500 xl:leading-8">
                   Inspired by the rising food prices in Toronto and motivated by
                   the need for clear information, this project aims to be a tool
                   that simplifies understanding. Drawing inspiration from
