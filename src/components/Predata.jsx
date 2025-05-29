@@ -1,5 +1,5 @@
 import React, { useEffect, useState, memo } from "react";
-import { useSpring, animated } from "react-spring"; 
+import { useSpring, animated } from "react-spring";
 import styles from "./Predata.module.css";
 
 function Number({ n }) {
