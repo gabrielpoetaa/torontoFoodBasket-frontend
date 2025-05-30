@@ -4,6 +4,10 @@
   margin: 0 auto;
   padding: 20px;
   position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
 }
 
 .swiper {
@@ -29,17 +33,12 @@
   color: var(--sweetcorn-600);
 }
 
-:global(.swiper-button-next:after) {
-  margin-left: 20px;
-}
-
-:global(.swiper-button-prev:after) {
-  margin-right: 20px;
-}
-
 @media screen and (max-width: 768px) {
+  .slidesContainer {
+    height: 500px;
+  }
   .swiper {
-    height: auto;
+    height: 100%;
   }
 
   .slide {
@@ -54,5 +53,10 @@
   .textContainer {
     width: 100%;
     padding: 20px;
+  }
+
+  /* Remove o background image em telas menores que 768px */
+  :global(.swiper-slide) > div {
+    background-image: none !important;
   }
 }
