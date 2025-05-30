@@ -1,9 +1,12 @@
 import { useState } from "react";
 import styles from "./Slides.module.css";
-import imgSlide from "../images/supermarket1.webp";
+
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination, Navigation, EffectFade } from "swiper/modules";
 import { motion } from "framer-motion";
+
+import imgSlide from "../images/supermarket1.webp";
+import foodCart from "../images/foodbasket-cart.webp";
 
 // Import Swiper styles
 import "swiper/css";
@@ -60,7 +63,7 @@ export function Slides() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 1.5, ease: "easeInOut", delay: 0.5 }}
-                className="w-full md:w-1/2 h-full xl:pt-32 lg:pt-6 pt-10 px-12 md:px-16"
+                className="w-full md:w-1/2 h-full xl:pt-32 lg:pt-6 md:pt-16 pt-24 px-12 md:px-16"
               >
                 <p className="xl:text-xl lg:text-lg text-sm font-extralight text-woodsmoke-500 xl:leading-8">
                   Inspired by the rising food prices in Toronto and motivated by
@@ -96,9 +99,9 @@ export function Slides() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 1.5, ease: "easeInOut", delay: 0.5 }}
-                className="w-full md:w-1/2 h-full xl:pt-32 lg:pt-6 pt-12 px-12 md:px-16"
+                className="w-full md:w-1/2 h-full xl:pt-32 lg:pt-6 md:pt-20 pt-28 px-12 md:px-16"
               >
-                <p className="xl:text-xl lg:text-lg text-sm font-extralight text-woodsmoke-500 xl:leading-8">
+                <p className="xl:text-xl lg:text-lg md:text-sm text-sm font-extralight text-woodsmoke-500 xl:leading-8">
                   The Canada's Food Price Report 2024 predicts a 2.5% to 4.5%
                   increase in overall food prices, offering relief compared to
                   previous years. The average family of four is expected to
@@ -123,6 +126,41 @@ export function Slides() {
                   backgroundRepeat: "no-repeat",
                 }}
               />
+            </motion.div>
+          </SwiperSlide>
+
+          {/* Third Slide */}
+          <SwiperSlide className={styles.slide}>
+            <motion.div
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 1.5, ease: "easeInOut" }}
+              className="flex flex-col md:flex-row w-full h-full"
+              style={{
+                backgroundImage: `url(${imgSlide})`,
+                backgroundSize: "cover",
+                backgroundPosition: "center",
+                backgroundRepeat: "no-repeat",
+              }}
+            >
+              <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 1.5, ease: "easeInOut", delay: 0.5 }}
+                className="w-full h-full xl:pt-48 xl:pt-32 lg:pt-48 md:pt-32 pt-10 px-12 md:px-16"
+              >
+                <p className="text-center text-woodsmoke-500 lg:text-white lg:font-bold xl:text-3xl lg:text-lg md:text-lg text-lg md:mx-12 font-extralight text-woodsmoke-500 xl:leading-8">
+                  In a world where inflation is a pressing concern, this project
+                  strives to simplify the understanding of food prices,
+                  providing a centralized and accessible resource for users to
+                  monitor and comprehend the fluctuations in the cost of living.
+                  <br></br>
+                  <br></br> Join us making informed decisions and gaining a
+                  clearer perspective on how food prices impact our daily lives.
+                </p>
+              </motion.div>
             </motion.div>
           </SwiperSlide>
         </Swiper>
