@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import styles from "./Slides.module.css";
 
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -15,6 +15,24 @@ import "swiper/css/navigation";
 import "swiper/css/effect-fade";
 
 export function Slides() {
+  const [swiper, setSwiper] = useState(null);
+
+  useEffect(() => {
+    if (swiper) {
+      // Inicializa os botões
+      const prevButton = document.querySelector(".swiper-button-prev");
+      const nextButton = document.querySelector(".swiper-button-next");
+
+      if (swiper.activeIndex < 1) {
+        prevButton.style.display = "none";
+      }
+
+      if (swiper.isEnd) {
+        nextButton.style.display = "none";
+      }
+    }
+  }, [swiper]);
+
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -35,6 +53,23 @@ export function Slides() {
           slidesPerView={1}
           navigation={true}
           className={styles.swiper}
+          onSwiper={setSwiper}
+          onSlideChange={(swiper) => {
+            const prevButton = document.querySelector(".swiper-button-prev");
+            const nextButton = document.querySelector(".swiper-button-next");
+
+            if (swiper.activeIndex < 1) {
+              prevButton.style.display = "none";
+            } else {
+              prevButton.style.display = "block";
+            }
+
+            if (swiper.isEnd) {
+              nextButton.style.display = "none";
+            } else {
+              nextButton.style.display = "block";
+            }
+          }}
         >
           {/* First Slide */}
           <SwiperSlide className={styles.slide}>
