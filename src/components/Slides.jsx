@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import styles from "./Slides.module.css";
 
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -15,6 +15,24 @@ import "swiper/css/navigation";
 import "swiper/css/effect-fade";
 
 export function Slides() {
+  const [swiper, setSwiper] = useState(null);
+
+  useEffect(() => {
+    if (swiper) {
+      // Inicializa os botões
+      const prevButton = document.querySelector(".swiper-button-prev");
+      const nextButton = document.querySelector(".swiper-button-next");
+
+      if (swiper.activeIndex < 1) {
+        prevButton.style.display = "none";
+      }
+
+      if (swiper.isEnd) {
+        nextButton.style.display = "none";
+      }
+    }
+  }, [swiper]);
+
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -35,6 +53,23 @@ export function Slides() {
           slidesPerView={1}
           navigation={true}
           className={styles.swiper}
+          onSwiper={setSwiper}
+          onSlideChange={(swiper) => {
+            const prevButton = document.querySelector(".swiper-button-prev");
+            const nextButton = document.querySelector(".swiper-button-next");
+
+            if (swiper.activeIndex < 1) {
+              prevButton.style.display = "none";
+            } else {
+              prevButton.style.display = "block";
+            }
+
+            if (swiper.isEnd) {
+              nextButton.style.display = "none";
+            } else {
+              nextButton.style.display = "block";
+            }
+          }}
         >
           {/* First Slide */}
           <SwiperSlide className={styles.slide}>
@@ -63,9 +98,9 @@ export function Slides() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 1.5, ease: "easeInOut", delay: 0.5 }}
-                className="w-full md:w-1/2 h-full xl:pt-32 lg:pt-6 md:pt-16 pt-24 px-12 md:px-16"
+                className="w-full md:w-1/2 h-full xl:pt-32 lg:pt-6 md:pt-8 pt-6 px-12 md:px-16"
               >
-                <p className="xl:text-xl lg:text-lg text-sm font-extralight text-woodsmoke-500 xl:leading-8">
+                <p className="xl:text-xl lg:text-lg text-xs font-extralight text-woodsmoke-500 xl:leading-8 md:leading-auto leading-5">
                   Inspired by the rising food prices in Toronto and motivated by
                   the need for clear information, this project aims to be a tool
                   that simplifies understanding. Drawing inspiration from
@@ -99,7 +134,7 @@ export function Slides() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 1.5, ease: "easeInOut", delay: 0.5 }}
-                className="w-full md:w-1/2 h-full xl:pt-32 lg:pt-6 md:pt-20 pt-28 px-12 md:px-16"
+                className="w-full md:w-1/2 h-full xl:pt-32 lg:pt-6 md:pt-20 pt-20 px-12 md:px-16"
               >
                 <p className="xl:text-xl lg:text-lg md:text-sm text-sm font-extralight text-woodsmoke-500 xl:leading-8">
                   The Canada's Food Price Report 2024 predicts a 2.5% to 4.5%
@@ -149,9 +184,9 @@ export function Slides() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 1.5, ease: "easeInOut", delay: 0.5 }}
-                className="w-full h-full xl:pt-48 xl:pt-32 lg:pt-48 md:pt-32 pt-10 px-12 md:px-16"
+                className="w-full h-full xl:pt-48 xl:pt-32 lg:pt-48 md:pt-32 pt-16 px-12 md:px-16"
               >
-                <p className="text-center text-woodsmoke-500 lg:text-white lg:font-bold xl:text-3xl lg:text-lg md:text-lg text-lg md:mx-12 font-extralight text-woodsmoke-500 xl:leading-8">
+                <p className="text-center text-woodsmoke-500 lg:text-white lg:font-bold xl:text-3xl lg:text-lg md:text-lg text-base md:mx-12 font-extralight text-woodsmoke-500 xl:leading-8">
                   In a world where inflation is a pressing concern, this project
                   strives to simplify the understanding of food prices,
                   providing a centralized and accessible resource for users to
