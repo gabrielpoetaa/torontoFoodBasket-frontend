@@ -6,7 +6,8 @@ import { Pagination, Navigation, EffectFade } from "swiper/modules";
 import { motion } from "framer-motion";
 
 import imgSlide from "../images/supermarket1.webp";
-import foodCart from "../images/foodbasket-cart.webp";
+import basketImage from "../images/basket-image.webp";
+import personImage from "../images/person-image.webp";
 
 // Import Swiper styles
 import "swiper/css";
@@ -87,7 +88,7 @@ export function Slides() {
                 transition={{ duration: 1.5, ease: "easeInOut" }}
                 className="hidden md:block w-1/2 h-full"
                 style={{
-                  backgroundImage: `url(${imgSlide})`,
+                  backgroundImage: `url(${basketImage})`,
                   backgroundSize: "cover",
                   backgroundPosition: "left",
                   backgroundRepeat: "no-repeat",
@@ -156,8 +157,7 @@ export function Slides() {
                 className="hidden md:block w-1/2 h-full order-1 md:order-2"
                 style={{
                   backgroundImage: `url(${imgSlide})`,
-                  backgroundSize: "cover",
-                  backgroundPosition: "right",
+                  backgroundPosition: "left",
                   backgroundRepeat: "no-repeat",
                 }}
               />
@@ -173,9 +173,9 @@ export function Slides() {
               transition={{ duration: 1.5, ease: "easeInOut" }}
               className="flex flex-col md:flex-row w-full h-full"
               style={{
-                backgroundImage: `url(${imgSlide})`,
+                backgroundImage: `url(${personImage})`,
                 backgroundSize: "cover",
-                backgroundPosition: "center",
+                backgroundPosition: "bottom",
                 backgroundRepeat: "no-repeat",
               }}
             >
@@ -186,7 +186,7 @@ export function Slides() {
                 transition={{ duration: 1.5, ease: "easeInOut", delay: 0.5 }}
                 className="w-full h-full xl:pt-48 xl:pt-32 lg:pt-48 md:pt-32 pt-16 px-12 md:px-16"
               >
-                <p className="text-center text-woodsmoke-500 lg:text-white lg:font-bold xl:text-3xl lg:text-lg md:text-lg text-base md:mx-12 font-extralight text-woodsmoke-500 xl:leading-8">
+                <p className="text-center text-woodsmoke-500 lg:text-white  xl:text-3xl lg:text-lg md:text-lg text-base md:mx-12 font-extralight text-woodsmoke-500 xl:leading-8">
                   In a world where inflation is a pressing concern, this project
                   strives to simplify the understanding of food prices,
                   providing a centralized and accessible resource for users to
