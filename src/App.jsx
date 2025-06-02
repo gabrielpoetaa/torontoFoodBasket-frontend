@@ -1,23 +1,18 @@
 import "./global.css";
 import styles from "./App.module.css";
-
+import { Routes, Route, Link } from "react-router-dom";
 import { Results } from "./components/Results";
-
 import React, { useState } from "react";
-
 import Predata from "./components/Predata";
-
 import Dropdown from "./components/Dropdown";
-
 import Header from "./components/Header";
 import { Graph } from "./components/Graph/Graph";
-
 import { Monthly100g } from "./components/Graph/monthly100g/Monthly100g";
 import { Slides } from "./components/Slides";
+import Dashboard from "./components/Dashboard/Dashboard";
 
-function App() {
+function LandingPage() {
   const [selectedDocument, setSelectedDocument] = useState("");
-
   const [receivedPrice, setReceivedPrice] = useState("-");
   const [receivedPricePer100g, setReceivedPricePer100g] = useState("-");
   const [receivedLowestPricePer100g, setreceivedLowestPricePer100g] =
@@ -73,7 +68,6 @@ function App() {
     setReceivedAveragePricePer100g(price);
   }
 
-  // Update the object with indicated index in the results array with the received price
   const updatedResults = results.map((result, index) => {
     if (index === 0) {
       return { ...result, price: receivedPricePer100g };
@@ -87,7 +81,6 @@ function App() {
     if (index === 3) {
       return { ...result, price: receivedPrice };
     }
-
     return result;
   });
 
@@ -115,17 +108,14 @@ function App() {
             onAveragePricePer100gChange={handleAveragePricePer100gFromChild}
           />
 
-          {updatedResults.map((result) => {
-            // console.log(result);
-            return (
-              <Results
-                key={result.id}
-                title={result.title}
-                price={result.price}
-                backgroundColor={result.background}
-              />
-            );
-          })}
+          {updatedResults.map((result) => (
+            <Results
+              key={result.id}
+              title={result.title}
+              price={result.price}
+              backgroundColor={result.background}
+            />
+          ))}
         </div>
         <div className={styles.graph}>
           <Monthly100g
@@ -134,6 +124,33 @@ function App() {
           />
         </div>
       </div>
+    </div>
+  );
+}
+
+function App() {
+  return (
+    <div>
+      <nav style={{ padding: "1rem", backgroundColor: "#f5f5f5" }}>
+        <Link
+          to="/"
+          style={{
+            marginRight: "1rem",
+            textDecoration: "none",
+            color: "#333",
+          }}
+        >
+          Home
+        </Link>
+        <Link to="/dashboard" style={{ textDecoration: "none", color: "#333" }}>
+          Dashboard
+        </Link>
+      </nav>
+
+      <Routes>
+        <Route path="/" element={<LandingPage />} />
+        <Route path="/dashboard" element={<Dashboard />} />
+      </Routes>
     </div>
   );
 }
