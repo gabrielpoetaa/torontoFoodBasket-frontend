@@ -16,15 +16,23 @@ import { DataGrid } from "@mui/x-data-grid";
 const API_URI = process.env.REACT_APP_API_URI;
 
 const columns = [
-  { field: "title", headerName: "Title", flex: 1 },
+  {
+    field: "title",
+    headerName: "Title",
+    flex: 1,
+    minWidth: 200,
+  },
   {
     field: "price",
     headerName: "Price",
     type: "number",
     flex: 1,
-    valueFormatter: (params) => {
-      if (params.value == null) return "";
-      return `$${params.value.toFixed(2)}`;
+    minWidth: 120,
+    renderCell: (params) => {
+      const value = params.row.price;
+      return value !== undefined && value !== null
+        ? `$${Number(value).toFixed(2)}`
+        : "";
     },
   },
   {
@@ -32,9 +40,12 @@ const columns = [
     headerName: "Price per 100g",
     type: "number",
     flex: 1,
-    valueFormatter: (params) => {
-      if (params.value == null) return "";
-      return `$${params.value.toFixed(2)}`;
+    minWidth: 150,
+    renderCell: (params) => {
+      const value = params.row.pricePer100g;
+      return value !== undefined && value !== null
+        ? `$${Number(value).toFixed(2)}`
+        : "";
     },
   },
   {
@@ -42,9 +53,12 @@ const columns = [
     headerName: "Price per Gram",
     type: "number",
     flex: 1,
-    valueFormatter: (params) => {
-      if (params.value == null) return "";
-      return `$${params.value.toFixed(2)}`;
+    minWidth: 150,
+    renderCell: (params) => {
+      const value = params.row.pricePerGram;
+      return value !== undefined && value !== null
+        ? `$${Number(value).toFixed(4)}`
+        : "";
     },
   },
   {
@@ -52,9 +66,16 @@ const columns = [
     headerName: "Date",
     type: "date",
     flex: 1,
-    valueFormatter: (params) => {
-      if (params.value == null) return "";
-      return new Date(params.value).toLocaleDateString();
+    minWidth: 120,
+    renderCell: (params) => {
+      const value = params.row.date;
+      if (!value) return "";
+      try {
+        return new Date(value).toLocaleDateString();
+      } catch (error) {
+        console.error("Error formatting date:", error);
+        return "";
+      }
     },
   },
 ];
@@ -64,29 +85,83 @@ const Dashboard = () => {
   const [startDate, setStartDate] = useState(null);
   const [endDate, setEndDate] = useState(null);
   const [products, setProducts] = useState([]);
+  const [allProducts, setAllProducts] = useState([]);
 
+  // Load initial product list
   useEffect(() => {
-    console.log("Fetching data...");
-    fetch(`${API_URI}`)
+    fetch(`${API_URI}/`)
       .then((response) => response.json())
       .then((data) => {
-        console.log("Data received:", data);
-        setProducts(data);
+        setAllProducts(Array.isArray(data) ? data : []);
       })
-      .catch((error) => console.error("Error fetching data:", error));
+      .catch((error) => {
+        setAllProducts([]);
+      });
   }, []);
 
-  const uniqueProducts = [...new Set(products.map((product) => product.title))];
+  // Load selected product history
+  useEffect(() => {
+    if (!selectedProduct) {
+      // When no product is selected, fetch all products history
+      fetch(`${API_URI}/dashboard/all`)
+        .then((response) => response.json())
+        .then((data) => {
+          setProducts(Array.isArray(data) ? data : []);
+        })
+        .catch((error) => {
+          setProducts([]);
+        });
+      return;
+    }
 
-  const filteredProducts = products.filter((product) => {
-    const productDate = new Date(product.date);
-    const matchesProduct =
-      !selectedProduct || product.title === selectedProduct;
-    const matchesStartDate = !startDate || productDate >= startDate;
-    const matchesEndDate = !endDate || productDate <= endDate;
+    fetch(`${API_URI}/dashboard/${selectedProduct}`)
+      .then((response) => {
+        return response.json();
+      })
+      .then((data) => {
+        setProducts(Array.isArray(data) ? data : []);
+      })
+      .catch((error) => {
+        setProducts([]);
+      });
+  }, [selectedProduct]);
 
-    return matchesProduct && matchesStartDate && matchesEndDate;
-  });
+  // Format and filter products
+  const filteredProducts = products
+    .filter((product) => {
+      if (
+        !product ||
+        !product.title ||
+        typeof product.title !== "string" ||
+        product.title.trim() === ""
+      ) {
+        return false;
+      }
+
+      if (!product?.date) return false;
+      try {
+        const productDate = new Date(product.date);
+        const matchesStartDate = !startDate || productDate >= startDate;
+        const matchesEndDate = !endDate || productDate <= endDate;
+        return matchesStartDate && matchesEndDate;
+      } catch (error) {
+        return false;
+      }
+    })
+    .map((product, index) => ({
+      id: index,
+      title: product.title.trim(),
+      price: typeof product.price === "number" ? product.price : 0,
+      pricePer100g:
+        typeof product.pricePer100g === "number" ? product.pricePer100g : 0,
+      pricePerGram:
+        typeof product.pricePerGram === "number" ? product.pricePerGram : 0,
+      date: product.date ? new Date(product.date) : null,
+    }))
+    .sort((a, b) => {
+      if (!a.title || !b.title) return 0;
+      return a.title.localeCompare(b.title);
+    });
 
   return (
     <LocalizationProvider dateAdapter={AdapterDateFns}>
@@ -141,17 +216,17 @@ const Dashboard = () => {
                   <MenuItem value="" sx={{ minHeight: "36px" }}>
                     All Products
                   </MenuItem>
-                  {uniqueProducts.map((title) => (
+                  {allProducts.map((product) => (
                     <MenuItem
-                      key={title}
-                      value={title}
+                      key={product.title}
+                      value={product.title}
                       sx={{
                         minHeight: "36px",
                         whiteSpace: "normal",
                         wordBreak: "break-word",
                       }}
                     >
-                      {title}
+                      {product.title}
                     </MenuItem>
                   ))}
                 </TextField>
@@ -194,9 +269,18 @@ const Dashboard = () => {
               rowsPerPageOptions={[10, 25, 50]}
               checkboxSelection
               disableSelectionOnClick
+              getRowHeight={() => "auto"}
               sx={{
                 "& .MuiDataGrid-cell:focus": {
                   outline: "none",
+                },
+                "& .MuiDataGrid-cell": {
+                  whiteSpace: "normal",
+                  lineHeight: "normal",
+                  padding: "8px 16px",
+                },
+                "& .MuiDataGrid-columnHeaders": {
+                  backgroundColor: "#f5f5f5",
                 },
               }}
             />
