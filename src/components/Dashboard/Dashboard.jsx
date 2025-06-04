@@ -1,17 +1,11 @@
 import React, { useState, useEffect } from "react";
-import {
-  Box,
-  Container,
-  Paper,
-  TextField,
-  MenuItem,
-  Grid,
-} from "@mui/material";
+import { Box, Container, Paper, Grid } from "@mui/material";
 
-import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
-import { DataGrid } from "@mui/x-data-grid";
+import CustomDatePicker from "./subComponents/CustomDatePicker";
+import CustomSelect from "./subComponents/CustomSelect";
+import CustomGrid from "./subComponents/CustomGrid";
 
 const API_URI = process.env.REACT_APP_API_URI;
 
@@ -167,123 +161,35 @@ const Dashboard = () => {
     <LocalizationProvider dateAdapter={AdapterDateFns}>
       <Container maxWidth="2xl" sx={{ mt: 4, mb: 4 }}>
         <Box sx={{ display: "flex", flexDirection: "column", gap: 3 }}>
-          {/* Filters Section */}
           <Paper sx={{ p: 2 }}>
             <Grid container spacing={2} alignItems="center">
               <Grid item xs={12} md={6}>
-                <TextField
-                  select
-                  fullWidth
+                <CustomSelect
                   label="Select Product"
                   value={selectedProduct}
                   onChange={(e) => setSelectedProduct(e.target.value)}
-                  sx={{
-                    "& .MuiSelect-select": {
-                      whiteSpace: "normal",
-                      wordBreak: "break-word",
-                      height: "56px",
-                      display: "flex",
-                      alignItems: "center",
-                      fontSize: "1rem",
-                      padding: "8px 14px",
-                    },
-                    "& .MuiInputBase-root": {
-                      height: "52px",
-                      width: "100%",
-                    },
-                    "& .MuiOutlinedInput-root": {
-                      "& fieldset": {
-                        height: "56px",
-                      },
-                    },
-                    "& .MuiInputLabel-root": {
-                      fontSize: "1rem",
-                    },
-                    width: "100%",
-                    minWidth: "400px",
-                  }}
-                  SelectProps={{
-                    MenuProps: {
-                      PaperProps: {
-                        style: {
-                          maxHeight: 300,
-                          minWidth: "400px",
-                        },
-                      },
-                    },
-                  }}
-                >
-                  <MenuItem value="" sx={{ minHeight: "36px" }}>
-                    All Products
-                  </MenuItem>
-                  {allProducts.map((product) => (
-                    <MenuItem
-                      key={product.title}
-                      value={product.title}
-                      sx={{
-                        minHeight: "36px",
-                        whiteSpace: "normal",
-                        wordBreak: "break-word",
-                      }}
-                    >
-                      {product.title}
-                    </MenuItem>
-                  ))}
-                </TextField>
-              </Grid>
-              <Grid item xs={12} md={3}>
-                <DatePicker
-                  label="Start Date"
-                  value={startDate}
-                  onChange={setStartDate}
-                  sx={{
-                    "& .MuiPickersInputBase-root": {
-                      height: "52px",
-                    },
-                  }}
-                  renderInput={(params) => <TextField {...params} fullWidth />}
+                  options={allProducts}
                 />
               </Grid>
               <Grid item xs={12} md={3}>
-                <DatePicker
+                <CustomDatePicker
+                  label="Start Date"
+                  value={startDate}
+                  onChange={setStartDate}
+                />
+              </Grid>
+              <Grid item xs={12} md={3}>
+                <CustomDatePicker
                   label="End Date"
                   value={endDate}
                   onChange={setEndDate}
-                  sx={{
-                    "& .MuiPickersInputBase-root": {
-                      height: "52px",
-                    },
-                  }}
-                  renderInput={(params) => <TextField {...params} fullWidth />}
                 />
               </Grid>
             </Grid>
           </Paper>
 
-          {/* Products Table Section */}
           <Paper sx={{ height: 600, width: "100%" }}>
-            <DataGrid
-              rows={filteredProducts}
-              columns={columns}
-              pageSize={10}
-              rowsPerPageOptions={[10, 25, 50]}
-              checkboxSelection
-              disableSelectionOnClick
-              getRowHeight={() => "auto"}
-              sx={{
-                "& .MuiDataGrid-cell:focus": {
-                  outline: "none",
-                },
-                "& .MuiDataGrid-cell": {
-                  whiteSpace: "normal",
-                  lineHeight: "normal",
-                  padding: "8px 16px",
-                },
-                "& .MuiDataGrid-columnHeaders": {
-                  backgroundColor: "#f5f5f5",
-                },
-              }}
-            />
+            <CustomGrid rows={filteredProducts} columns={columns} />
           </Paper>
         </Box>
       </Container>
