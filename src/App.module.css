@@ -84,3 +84,9 @@ background-color: var(--chestnut-50); */
     display: block;
   }
 }
+
+@media (max-width: 768px) {
+  .predataWrapper {
+    height: 0px;
+  }
+}
