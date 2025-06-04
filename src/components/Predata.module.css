@@ -1,44 +1,38 @@
+.predata {
+  display: flex;
+  padding: 30px 3px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  /* margin-top: 8px; */
 
-
-.predata{
-    display: flex;
-    padding: 30px 3px;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    /* margin-top: 8px; */
-
-
-    & > span:nth-of-type(2) {
-        margin-top: 2rem; /* Adjust the value as needed */
-      }
+  & > span:nth-of-type(2) {
+    margin-top: 2rem; /* Adjust the value as needed */
+  }
 }
 
-.predata span{
-    color: var(--sweetcorn-600);
-    text-align:center;
-    font-weight: 900;
-    /* line-height: 1.4; */
-    font-size: 6rem;
-
+.predata span {
+  color: var(--sweetcorn-600);
+  text-align: center;
+  font-weight: 900;
+  /* line-height: 1.4; */
+  font-size: 6rem;
 }
 
-.predata  p{
-    color: var(--sweetcorn-600);
-    text-align: center;
-    font-size: 2rem;
-    font-weight: 700;
-    /* line-height: 1.25; */
-
+.predata p {
+  color: var(--sweetcorn-600);
+  text-align: center;
+  font-size: 2rem;
+  font-weight: 700;
+  /* line-height: 1.25; */
 }
 
-@media (max-width:600px){
-    .predata span{
-        font-size: 3rem;
-    }
+@media (max-width: 768px) {
+  .predata span {
+    font-size: 3rem;
+  }
 
-    .predata p{
-        font-size: 1rem;
-    }
+  .predata p {
+    font-size: 1rem;
+  }
 }
-

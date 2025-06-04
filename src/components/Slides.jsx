@@ -99,7 +99,7 @@ export function Slides() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 1.5, ease: "easeInOut", delay: 0.5 }}
-                className="w-full md:w-1/2 h-full xl:pt-32 lg:pt-6 md:pt-8 pt-6 px-12 md:px-16"
+                className="w-full md:w-1/2 h-full xl:pt-24 pt-6 lg:pt-6 md:pt-8 px-12 md:px-16"
               >
                 <p className="xl:text-xl lg:text-lg text-xs font-extralight text-woodsmoke-500 xl:leading-8 md:leading-auto leading-5">
                   Inspired by the rising food prices in Toronto and motivated by
@@ -186,7 +186,7 @@ export function Slides() {
                 transition={{ duration: 1.5, ease: "easeInOut", delay: 0.5 }}
                 className="w-full h-full xl:pt-48 xl:pt-32 lg:pt-48 md:pt-32 pt-16 px-12 md:px-16"
               >
-                <p className="text-center text-woodsmoke-500 lg:text-white  xl:text-3xl lg:text-lg md:text-lg text-base md:mx-12 font-extralight text-woodsmoke-500 xl:leading-8">
+                <p className="text-center text-woodsmoke-500 md:text-white  xl:text-3xl lg:text-lg md:text-lg text-base md:mx-12 font-extralight text-woodsmoke-500 xl:leading-8">
                   In a world where inflation is a pressing concern, this project
                   strives to simplify the understanding of food prices,
                   providing a centralized and accessible resource for users to
